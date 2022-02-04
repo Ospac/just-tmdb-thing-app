@@ -11,7 +11,9 @@ import {
 import Root from './navigation/Root.js';
 import { ThemeProvider } from 'styled-components/native';
 import { DarkTheme, LightTheme } from './styled.js';
+import { QueryClient, QueryClientProvider} from 'react-query'
 
+const queryClient = new QueryClient()
 
 export default function App() {
   const [assets] = useAssets([require('./girl.jpg')]);
@@ -21,10 +23,12 @@ export default function App() {
   if(!assets || !loaded) return <AppLoading/>
   else 
     return (
-      <ThemeProvider theme={isDark? DarkTheme : LightTheme}>
-        <NavigationContainer>
-          <Root/>
-        </NavigationContainer>
-      </ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider theme={isDark? DarkTheme : LightTheme}>
+          <NavigationContainer>
+            <Root/>
+          </NavigationContainer>
+        </ThemeProvider>
+      </QueryClientProvider>
     )
 }

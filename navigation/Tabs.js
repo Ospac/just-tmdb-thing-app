@@ -1,6 +1,4 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
-import { backgroundColor, color } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
 import { useColorScheme } from 'react-native';
 import  {colors} from './colors.js';
 import { Ionicons } from '@expo/vector-icons';
@@ -18,6 +16,7 @@ const Tabs = () => {
                 backgroundColor: isDark? colors.DarkBlack : "white"
             }}
             screenOptions={{
+                unmountOnBlur : true,
                 tabBarStyle:{
                     backgroundColor: isDark? colors.DarkBlack : "white"
                 },
