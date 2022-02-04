@@ -1,21 +1,30 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {useState} from 'react';
+import { StyleSheet, Text, View, Image, useColorScheme} from 'react-native';
+import  AppLoading from 'expo-app-loading';
+import * as Font from 'expo-font';
+import { Ionicons } from '@expo/vector-icons';
+import {useAssets } from 'expo-asset';
+import { 
+  NavigationContainer,
+} from '@react-navigation/native';
+import Root from './navigation/Root.js';
+import { ThemeProvider } from 'styled-components/native';
+import { DarkTheme, LightTheme } from './styled.js';
+
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+  const [assets] = useAssets([require('./girl.jpg')]);
+  const [loaded, error] = Font.useFonts(Ionicons.font);
+  const isDark = useColorScheme() === "dark";
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  if(!assets || !loaded) return <AppLoading/>
+  else 
+    return (
+      <ThemeProvider theme={isDark? DarkTheme : LightTheme}>
+        <NavigationContainer>
+          <Root/>
+        </NavigationContainer>
+      </ThemeProvider>
+    )
+}
