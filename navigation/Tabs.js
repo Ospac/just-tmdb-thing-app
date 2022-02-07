@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useColorScheme } from 'react-native';
 import  {colors} from './colors.js';
 import { Ionicons } from '@expo/vector-icons';
-import Movie from '../screens/Movie.tsx';
+import Movies from '../screens/Movies.tsx';
 import Search from '../screens/Search';
 import Tv from "../screens/Tv";
 import React from 'react';
@@ -34,7 +34,7 @@ const Tabs = () => {
                     color: isDark? colors.LightGray : colors.DarkBlack
                 },
             }}>
-            <Tab.Screen name="Movie" component={Movie} options={{
+            <Tab.Screen name="Movie" component={Movies} options={{
                 tabBarIcon : ({focused, color, size}) => (
                      <Ionicons
                         name= {focused? "film" : "film-outline"}
