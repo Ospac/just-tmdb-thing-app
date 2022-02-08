@@ -1,9 +1,10 @@
 import React from 'react'
 import styled from 'styled-components/native'
 import { BlurView } from "@react-native-community/blur";
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
 import { makeImgPath } from '../util';
 import { Poster } from './Poster';
+import { useNavigation } from '@react-navigation/native';
 
 const Title = styled.Text`
     font-size: 16px;
@@ -44,23 +45,28 @@ const Slide:React.FC<SlideProps>= ({
     vote_average,
     overview
 }) => {
+    const navigation = useNavigation();
+    const goToDetail = ()=> { navigation.navigate("Stack", {screen: "Detail" })}
+
     return(
-        <View style={{flex: 1}}>
-            <BgImg 
-                style={StyleSheet.absoluteFill}
-                source={{uri:makeImgPath(backdrop_path)}}/>
-            <BlurView 
-                intensity={40} 
-                style={StyleSheet.absoluteFill}>
-                <Wrapper>
-                    <Poster path={backdrop_path}/>
-                    <Column>
-                        <Title>{original_title}</Title>
-                        {vote_average != 0 && <Vote>⭐️{vote_average + "/10"}</Vote>}
-                        <Desc>{overview.slice(0,80) + "..."}</Desc>
-                    </Column>
-                </Wrapper>
-            </BlurView>
-        </View>
+        <TouchableWithoutFeedback onPress={goToDetail}>
+            <View style={{flex: 1}}>
+                <BgImg 
+                    style={StyleSheet.absoluteFill}
+                    source={{uri:makeImgPath(backdrop_path)}}/>
+                <BlurView 
+                    intensity={40} 
+                    style={StyleSheet.absoluteFill}>
+                    <Wrapper>
+                        <Poster path={backdrop_path}/>
+                        <Column>
+                            <Title>{original_title}</Title>
+                            {vote_average != 0 && <Vote>⭐️{vote_average + "/10"}</Vote>}
+                            <Desc>{overview.slice(0,80) + "..."}</Desc>
+                        </Column>
+                    </Wrapper>
+                </BlurView>
+            </View>
+        </TouchableWithoutFeedback>
 )}
 export default Slide;

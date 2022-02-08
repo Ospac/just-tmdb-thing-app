@@ -1,4 +1,6 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
+import { TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 import { Poster } from '../components/Poster';
 import { Vote } from '../components/Vote';
@@ -19,11 +21,19 @@ interface VmediaProps{
     voteAverage: number
 }
 export const Vmedia:React.FC<VmediaProps> = ({backdropPath, originalTitle, voteAverage}) => 
-    <Movie>
-        <Poster path={backdropPath}></Poster>
-        <Title>
-            {originalTitle.slice(0,13)}
-            {originalTitle.length > 13 && "..."}
-        </Title>
-        <Vote voteAverage={voteAverage}/>
-    </Movie>
+    {   
+        const navigation = useNavigation();
+        const goToDetail = ()=> {navigation.navigate("Stack", {screen: "Detail"})}
+        return( 
+        <TouchableOpacity onPress={goToDetail}>
+            <Movie>
+                <Poster path={backdropPath}></Poster>
+                <Title>
+                    {originalTitle.slice(0,13)}
+                    {originalTitle.length > 13 && "..."}
+                </Title>
+                <Vote voteAverage={voteAverage}/>
+            </Movie>
+        </TouchableOpacity>
+        )
+    }
