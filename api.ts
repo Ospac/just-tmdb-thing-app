@@ -36,7 +36,12 @@ export const moviesApi = {
         ).then((res) => res.json()),
     trending : () => 
         fetch(`${BASE_URL}/trending/movie/week?api_key=${API_KEY}`
-        ).then((res) => res.json())
+        ).then((res) => res.json()),
+    search : ({queryKey}) =>{
+        const [ _, query] = queryKey;
+        return fetch(`${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${query}&page=1`).then((res) => res.json())
+    }
+    
 };
 export const tvApi = {
     airingToday : () => 
@@ -47,5 +52,9 @@ export const tvApi = {
         ).then((res) => res.json()),
     trending : () => 
         fetch(`${BASE_URL}/trending/tv/week?api_key=${API_KEY}`
-        ).then((res) => res.json())
+        ).then((res) => res.json()),
+    search : ({queryKey}) =>{
+        const [ _, query] = queryKey;
+        return fetch(`${BASE_URL}/search/tv?api_key=${API_KEY}&language=en-US&query=${query}&page=1`).then((res) => res.json())
+    }    
 }

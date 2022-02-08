@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import {Dimensions, FlatList } from 'react-native';
 import styled from 'styled-components/native'
 import Slide from '../components/Slide';
-import { Vmedia } from '../components/Vmedia';
 import { Hmedia } from '../components/Hmedia'; 
 import { useQuery, useQueryClient } from 'react-query';
 import { MovieResponse, moviesApi } from '../api';
@@ -12,21 +11,18 @@ import { Loader } from '../components/Loader';
 import { HList } from '../components/HList';
 
 const TrendingScroll = styled.FlatList`
-    margin-top: 15;
+    margin-top: 15px;
 ` as unknown as typeof FlatList;
 //flatList with styled-components, "as unknown as typeof FlatList" is needed
 //react Native의 FlatList가 아닌 styled-components자체에서 가지고있는 FlatList를 사용하기 때문에 type of FlatList(react native자체의 FlatList)를 선언
 
-const VSeparator = styled.View`
-    margin-right: -8;
-`;
 const ListTitle = styled.Text`
     color : white;
     font-size: 16px;
     font-weight:600;
-    margin-left: 20;
-    margin-top: 15  ;
-    margin-bottom: 10;
+    margin-left: 20px;
+    margin-top: 15px;
+    margin-bottom: 10px;
 `;
 const {height : SCREEN_HEIGHT} = Dimensions.get("window");
 

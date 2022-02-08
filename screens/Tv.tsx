@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {ScrollView, FlatList, RefreshControl} from 'react-native';
+import {ScrollView, RefreshControl} from 'react-native';
 import { useQuery, useQueryClient } from 'react-query';
 import { tvApi } from '../api';
 import { HList } from '../components/HList';

@@ -5,8 +5,8 @@ import { Poster } from '../components/Poster';
 import { Vote } from '../components/Vote';
 
 const Movie = styled.View`
-    margin-top: 15;
-    margin-left: 15;
+    margin-top: 15px;
+    margin-left: 15px;
     flex-direction: row;
 `;
 const Column = styled.View`

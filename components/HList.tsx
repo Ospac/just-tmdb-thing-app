@@ -7,9 +7,9 @@ const ListTitle = styled.Text`
     color : white;
     font-size: 16px;
     font-weight:600;
-    margin-left: 20;
-    margin-top: 15  ;
-    margin-bottom: 10;
+    margin-left: 20px;
+    margin-top: 15px;
+    margin-bottom: 10px;
 `;
 const ListContainer = styled.View`
     margin-bottom: 0px;
